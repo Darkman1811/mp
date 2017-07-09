@@ -5,8 +5,10 @@
  */
 package reporting;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,6 +19,8 @@ public class Pays {
     @Id
     private Long id;
     private String libelle;
+    @OneToMany(mappedBy = "pays")
+    private List<Region> region;
 
     public Long getId() {
         return id;

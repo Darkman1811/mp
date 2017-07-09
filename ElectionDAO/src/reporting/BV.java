@@ -5,9 +5,13 @@
  */
 package reporting;
 
+import gestion.Resultat;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 /**
  *
  * @author super
@@ -17,6 +21,12 @@ public class BV {
     @Id
     private Long id;
     private String libelle;
+    @ManyToOne
+    private CV cv;
+    @OneToOne
+    private Resultat resultat;
+    @OneToMany(mappedBy = "bv")
+    private List <Contact> contacts;
     
 
     public Long getId() {

@@ -5,14 +5,24 @@
  */
 package reporting;
 
+import gestion.Resultat;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 /**
  *
  * @author super
  */
+@Entity
 public class Parti {
+    @Id
     private Long id;
     private String nom;
     private String image;
+    @OneToMany(mappedBy = "parti")
+    private List <Resultat> resultat ;
 
     public Long getId() {
         return id;

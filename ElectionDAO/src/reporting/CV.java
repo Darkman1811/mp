@@ -5,8 +5,11 @@
  */
 package reporting;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -18,7 +21,11 @@ public class CV {
     private Long id;
     private String libelle;
     private Long latitude;
-    private long longitude;
+    private Long longitude;
+    @ManyToOne
+    private Quartier quartier;
+    @OneToMany(mappedBy = "bv")
+    private List<BV> bv;
 
     public Long getId() {
         return id;

@@ -5,8 +5,15 @@
  */
 package gestion;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import reporting.BV;
+import reporting.Election;
+import reporting.Parti;
 
 /**
  *
@@ -19,6 +26,14 @@ public class Resultat {
     private String date;
     private String heure;
     private Boolean etat;
+    @OneToOne
+    private BV bv;
+    @OneToMany
+    private List <Score> score;
+    @ManyToOne
+    private Election election;
+    @ManyToOne
+    private Parti parti;
 
     public Long getId() {
         return id;

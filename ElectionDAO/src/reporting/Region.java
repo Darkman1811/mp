@@ -5,8 +5,11 @@
  */
 package reporting;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,7 +20,11 @@ public class Region {
     @Id
     private Long id;
     private String libelle;
-
+    @ManyToOne
+    private Pays pays;
+    @OneToMany(mappedBy = "region")
+    private List<Departement> departement;
+    
     public Long getId() {
         return id;
     }

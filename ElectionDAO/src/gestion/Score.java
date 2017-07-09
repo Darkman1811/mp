@@ -7,6 +7,7 @@ package gestion;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,6 +18,8 @@ public class Score {
     @Id
     private Long id;
     private Long nb_voix;
+    @ManyToOne
+    private Resultat resultat;
 
     public Long getId() {
         return id;
