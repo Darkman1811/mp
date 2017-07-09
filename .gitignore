@@ -14,3 +14,4 @@ hs_err_pid*
 ModulePrefet/build/
 
 ModulePrefet/dist/
+/ElectionDAO/nbproject/private/
