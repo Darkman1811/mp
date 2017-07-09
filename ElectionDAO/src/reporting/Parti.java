@@ -8,6 +8,8 @@ package reporting;
 import gestion.Resultat;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -16,8 +18,9 @@ import javax.persistence.OneToMany;
  * @author super
  */
 @Entity
-public class Parti {
+public class Parti implements Data{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
     private String image;
@@ -46,6 +49,14 @@ public class Parti {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<Resultat> getResultat() {
+        return resultat;
+    }
+
+    public void setResultat(List<Resultat> resultat) {
+        this.resultat = resultat;
     }
     
     

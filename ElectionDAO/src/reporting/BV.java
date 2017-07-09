@@ -8,6 +8,8 @@ package reporting;
 import gestion.Resultat;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -17,8 +19,9 @@ import javax.persistence.OneToOne;
  * @author super
  */
 @Entity
-public class BV {
+public class BV implements Data{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
     @ManyToOne
@@ -43,6 +46,30 @@ public class BV {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public CV getCv() {
+        return cv;
+    }
+
+    public void setCv(CV cv) {
+        this.cv = cv;
+    }
+
+    public Resultat getResultat() {
+        return resultat;
+    }
+
+    public void setResultat(Resultat resultat) {
+        this.resultat = resultat;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
     
     

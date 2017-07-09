@@ -7,6 +7,8 @@ package reporting;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -16,15 +18,16 @@ import javax.persistence.OneToMany;
  * @author super
  */
 @Entity
-public class CV {
+public class CV implements Data{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
     private Long latitude;
     private Long longitude;
     @ManyToOne
     private Quartier quartier;
-    @OneToMany(mappedBy = "bv")
+    @OneToMany(mappedBy = "cv")
     private List<BV> bv;
 
     public Long getId() {
@@ -51,12 +54,33 @@ public class CV {
         this.latitude = latitude;
     }
 
-    public long getLongitude() {
+ 
+    public Long getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(Long longitude) {
         this.longitude = longitude;
+    }
+
+  
+
+   
+
+    public Quartier getQuartier() {
+        return quartier;
+    }
+
+    public void setQuartier(Quartier quartier) {
+        this.quartier = quartier;
+    }
+
+    public List<BV> getBv() {
+        return bv;
+    }
+
+    public void setBv(List<BV> bv) {
+        this.bv = bv;
     }
     
     

@@ -7,6 +7,8 @@ package reporting;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -16,8 +18,9 @@ import javax.persistence.OneToMany;
  * @author super
  */
 @Entity
-public class Quartier {
+public class Quartier implements Data{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
     @ManyToOne
@@ -40,6 +43,22 @@ public class Quartier {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public Collectivite getCollectivite() {
+        return collectivite;
+    }
+
+    public void setCollectivite(Collectivite collectivite) {
+        this.collectivite = collectivite;
+    }
+
+    public List<CV> getCv() {
+        return cv;
+    }
+
+    public void setCv(List<CV> cv) {
+        this.cv = cv;
     }
     
     

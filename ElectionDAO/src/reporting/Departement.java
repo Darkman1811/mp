@@ -7,17 +7,21 @@ package reporting;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import reporting.Collectivite;
 
 /**
  *
  * @author super
  */
 @Entity
-public class Departement {
+public class Departement implements Data{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
     @ManyToOne
@@ -39,6 +43,22 @@ public class Departement {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+    public List<Collectivite> getCollectivite() {
+        return collectivite;
+    }
+
+    public void setCollectivite(List<Collectivite> collectivite) {
+        this.collectivite = collectivite;
     }
     
     

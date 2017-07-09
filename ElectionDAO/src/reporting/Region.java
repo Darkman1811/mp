@@ -7,6 +7,8 @@ package reporting;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -16,8 +18,9 @@ import javax.persistence.OneToMany;
  * @author super
  */
 @Entity
-public class Region {
+public class Region implements Data{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
     @ManyToOne
@@ -40,7 +43,24 @@ public class Region {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
-    
+
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
+    }
+
+    public List<Departement> getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(List<Departement> departement) {
+        this.departement = departement;
+    }
+
+   
     
     
 }

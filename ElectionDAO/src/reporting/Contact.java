@@ -6,6 +6,8 @@
 package reporting;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -15,8 +17,9 @@ import javax.persistence.ManyToOne;
  * @author super
  */
 @Entity
-public class Contact {
+public class Contact implements Data{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Prenom;
     private String nom;
@@ -63,6 +66,14 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public BV getBv() {
+        return bv;
+    }
+
+    public void setBv(BV bv) {
+        this.bv = bv;
     }
     
 }

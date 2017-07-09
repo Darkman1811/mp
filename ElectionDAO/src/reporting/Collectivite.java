@@ -7,8 +7,11 @@ package reporting;
 
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -16,11 +19,12 @@ import javax.persistence.OneToMany;
  * @author super
  */
 @Entity
-public class Collectivite {
+public class Collectivite implements Data{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
-    @ManyToMany
+    @ManyToOne
     private Departement departement;
     @OneToMany(mappedBy = "collectivite")
     private List<Quartier> quartier;
@@ -40,6 +44,22 @@ public class Collectivite {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
+    }
+
+    public List<Quartier> getQuartier() {
+        return quartier;
+    }
+
+    public void setQuartier(List<Quartier> quartier) {
+        this.quartier = quartier;
     }
     
     
