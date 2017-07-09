@@ -5,11 +5,16 @@
  */
 package reporting;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author super
  */
+@Entity
 public class BV {
+    @Id
     private Long id;
     private String libelle;
     

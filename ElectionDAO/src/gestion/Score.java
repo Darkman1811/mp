@@ -5,11 +5,16 @@
  */
 package gestion;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author super
  */
+@Entity
 public class Score {
+    @Id
     private Long id;
     private Long nb_voix;
 

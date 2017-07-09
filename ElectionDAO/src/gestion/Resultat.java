@@ -5,11 +5,16 @@
  */
 package gestion;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author super
  */
+@Entity
 public class Resultat {
+    @Id
     private Long id;
     private String date;
     private String heure;
