@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduleprefet.FlowControler">
    <children>
-      <Label text="Connection">
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </Label>
-      <TextField maxWidth="300.0" prefHeight="25.0" prefWidth="457.0" promptText="Nom utilisateur">
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </TextField>
-      <PasswordField maxWidth="300.0" promptText="Mot de passe">
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </PasswordField>
-      <Button mnemonicParsing="false" text="Connecter">
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </Button>
+      <ImageView fitHeight="533.0" fitWidth="605.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@bg.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label text="Connection">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField maxWidth="300.0" prefHeight="25.0" prefWidth="457.0" promptText="Nom utilisateur">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField maxWidth="300.0" promptText="Mot de passe">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Button mnemonicParsing="false" onAction="#openInitialisation" text="Connecter">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
-</VBox>
+</StackPane>

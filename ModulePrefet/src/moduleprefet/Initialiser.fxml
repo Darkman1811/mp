@@ -5,30 +5,29 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduleprefet.FlowControler">
    <children>
       <Label text="Initialiser">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <ComboBox prefWidth="150.0" promptText="Pays">
+      <ComboBox fx:id="comboPays" prefWidth="150.0" promptText="Pays">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </ComboBox>
-      <ComboBox prefWidth="150.0" promptText="Region">
+      <ComboBox fx:id="comboRegion" prefWidth="150.0" promptText="Region">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </ComboBox>
-      <ComboBox prefWidth="150.0" promptText="Departement">
+      <ComboBox fx:id="comboDepartement" prefWidth="150.0" promptText="Departement">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </ComboBox>
-      <Button mnemonicParsing="false" text="Valider">
+      <Button fx:id="fenetreProgression" mnemonicParsing="false" onAction="#openProgression" text="Valider">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

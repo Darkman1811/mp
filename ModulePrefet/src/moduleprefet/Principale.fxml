@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduleprefet.PrincipaleControler">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="moduleprefet.FlowControler">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -64,17 +65,22 @@
             </Label>
                   <VBox alignment="TOP_CENTER" prefHeight="549.0" prefWidth="221.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
-                        <ComboBox prefWidth="150.0" promptText="Collectivité">
+                        <ComboBox fx:id="comboCollectivite" prefWidth="150.0" promptText="Collectivité">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ComboBox>
-                        <ComboBox prefWidth="150.0" promptText="Quartier">
+                        <ComboBox fx:id="comboQuartier" prefWidth="150.0" promptText="Quartier">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ComboBox>
-                        <ComboBox prefWidth="150.0" promptText="Bureau de vote">
+                        <ComboBox fx:id="comboCentre" prefWidth="150.0" promptText="Centre de vote">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <ComboBox fx:id="comboBureau" prefWidth="150.0" promptText="Bureau de vote">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -84,7 +90,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#openwindow" text="Button" />
+                        <Button mnemonicParsing="false" text="Button" />
                      </children>
                   </VBox>
           </children>
@@ -191,6 +197,7 @@
                         </Pane>
                      </children>
                   </VBox>
+                  <Button layoutX="355.0" layoutY="4.0" mnemonicParsing="false" text="Terminer" />
           </children>
         </AnchorPane>
       </items>

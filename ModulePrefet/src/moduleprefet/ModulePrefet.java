@@ -19,15 +19,8 @@ public class ModulePrefet extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        Parent principale = FXMLLoader.load(getClass().getResource("Principale.fxml"));
-        Parent arbitrage = FXMLLoader.load(getClass().getResource("arbitrage.fxml"));
-         
-        
-        Scene scene = new Scene(principale);
-        
-        stage.setScene(scene);
-        stage.show();
+        FlowControler flowControler=new FlowControler();
+        flowControler.openLogin(null);
     }
 
     /**
