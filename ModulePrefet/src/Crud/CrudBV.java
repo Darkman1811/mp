@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import reporting.BV;
+import reporting.Data;
 import reporting.Pays;
 
 /**
@@ -57,4 +58,6 @@ public class CrudBV {
         em.getTransaction().commit();
         return re;
     }
+
+   
 }

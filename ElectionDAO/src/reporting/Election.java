@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
  * @author super
  */
 @Entity
-public class Election implements Data{
+public class Election {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

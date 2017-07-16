@@ -11,4 +11,8 @@ package reporting;
  */
 public interface Data {
     public Long getId();
+    public String getLibelle();
+    
+    public void setId(Long id);
+    public void setLibelle(String libelle);
 }

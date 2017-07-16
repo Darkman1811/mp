@@ -65,7 +65,7 @@
             </Label>
                   <VBox alignment="TOP_CENTER" prefHeight="549.0" prefWidth="221.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
-                        <ComboBox fx:id="comboCollectivite" onAction="#load2" prefWidth="150.0" promptText="Collectivité">
+                        <ComboBox fx:id="comboCollectivite"   prefWidth="150.0" promptText="Collectivité">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>

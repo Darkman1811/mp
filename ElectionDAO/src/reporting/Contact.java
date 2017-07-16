@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
  * @author super
  */
 @Entity
-public class Contact implements Data{
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

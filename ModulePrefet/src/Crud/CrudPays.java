@@ -9,15 +9,16 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import reporting.Data;
 import reporting.Pays;
 
 /**
  *
  * @author super
  */
-public class CrudPays {
+public class CrudPays <T extends Data>{
     EntityManager em;
-    Pays worker;
+    T worker;
     public CrudPays(){
     EntityManagerFactory factory= Persistence.createEntityManagerFactory("ModulePrefetPU");
     em=factory.createEntityManager();
@@ -25,32 +26,34 @@ public class CrudPays {
     
     
     
-    public void ajouter(Pays  data){
+    public void ajouter(T  data){
         em.getTransaction().begin();
         em.persist(data);
         em.getTransaction().commit();        
     }
     
     
-       public void supprimer(Pays data){
+       public void supprimer(T data){
         em.getTransaction().begin();
-        worker=(Pays)em.find(Pays.class, data.getId());
+        worker=(T)em.find(worker.getClass(), data.getId());
         em.remove(worker);
         em.flush();
         em.getTransaction().commit();        
     }
     
-       public Pays get(Pays data){
+       public T get(T data){
         em.getTransaction().begin();
-        worker=em.find(Pays.class,data.getId() );
+        worker=(T)em.find(worker.getClass(),data.getId() );
         em.getTransaction().commit();        
         return worker;
     }
        
-       public List<Pays> getAll(){
+       public List<T> getAll(T data){
         em.getTransaction().begin();
-       
-        List re=em.createQuery("SELECT D FROM Pays D").getResultList();
+         
+       String sql="SELECT D FROM "+data.getClass().getSimpleName()+" D";
+       System.out.println(sql);
+        List re=em.createQuery(sql).getResultList();
         
         em.getTransaction().commit();
         return re;

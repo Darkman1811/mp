@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package moduleprefet.metier;
+package Crud;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import reporting.Data;
 import reporting.Pays;
-
-
 
 /**
  *
@@ -22,8 +18,7 @@ import reporting.Pays;
  */
 public class Crud <T extends Data>{
     EntityManager em;
-    private T data,worker;
-    
+    T worker;
     public Crud(){
     EntityManagerFactory factory= Persistence.createEntityManagerFactory("ModulePrefetPU");
     em=factory.createEntityManager();
@@ -40,7 +35,7 @@ public class Crud <T extends Data>{
     
        public void supprimer(T data){
         em.getTransaction().begin();
-        worker=(T)em.find(data.getClass(), data.getId());
+        worker=(T)em.find(worker.getClass(), data.getId());
         em.remove(worker);
         em.flush();
         em.getTransaction().commit();        
@@ -48,19 +43,18 @@ public class Crud <T extends Data>{
     
        public T get(T data){
         em.getTransaction().begin();
-        worker=(T)em.find(data.getClass(), data.getId() );
+        worker=(T)em.find(worker.getClass(),data.getId() );
         em.getTransaction().commit();        
         return worker;
     }
        
-       public List<T> getAll(){
-        em.getTransaction().begin();
-       
-        List re=em.createQuery("SELECT R FROM Region R").getResultList();
-        
+       public List<T> getAll(T data){
+        em.getTransaction().begin();         
+       String sql="SELECT D FROM "+data.getClass().getSimpleName()+" D";
+        List re=em.createQuery(sql).getResultList();        
         em.getTransaction().commit();
         return re;
     }
-    
-    
+       
+       
 }

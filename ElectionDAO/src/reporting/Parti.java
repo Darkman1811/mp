@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
  * @author super
  */
 @Entity
-public class Parti implements Data{
+public class Parti {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
