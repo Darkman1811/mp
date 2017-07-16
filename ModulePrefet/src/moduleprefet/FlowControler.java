@@ -44,8 +44,6 @@ import reporting.Region;
  * @author super
  */
 public class FlowControler implements Initializable{
-    public static Stage fenetreArbitrage;
-    public static Stage fenetrePrincipale;
     public static Stage fenLoad;
     
     @FXML
@@ -65,65 +63,53 @@ public class FlowControler implements Initializable{
     
     @FXML
     public void openLogin(ActionEvent event) throws IOException{
-       Parent parent = FXMLLoader.load(getClass().getResource("connection.fxml"));       
-       Scene scene = new Scene(parent,Color.TRANSPARENT);
-      
-       fenLoad.initStyle(StageStyle.TRANSPARENT);
-       fenLoad.setScene(scene);
-       fenLoad.show();
+        openLoad("connection.fxml");
     }
     
      @FXML
     public void openInitialisation(ActionEvent event) throws IOException{
-       fenLoad.close();
-       Parent parent = FXMLLoader.load(getClass().getResource("Initialiser.fxml"));       
-       Scene scene = new Scene(parent,Color.TRANSPARENT);
-       fenLoad.initStyle(StageStyle.TRANSPARENT);       
-       fenLoad.setScene(scene);
-       fenLoad.show();  
-       
+         openLoad("Initialiser.fxml");       
     }
     
    
      @FXML
     public void openProgression(ActionEvent event) throws IOException{
-       fenLoad.close();
-       Parent parent = FXMLLoader.load(getClass().getResource("progression.fxml"));       
-       Scene scene = new Scene(parent,Color.TRANSPARENT);
-       fenLoad.initStyle(StageStyle.TRANSPARENT);       
+         openLoad("progression.fxml");
+    }
+    
+     public void openPrincipale(ActionEvent event) throws IOException{       
+         openNew("Principale.fxml", "Module prefet");       
+    }
+     
+    public void openArbitrage(ActionEvent event) throws IOException{       
+       openNew("arbitrage.fxml", "Arbitrage");
+    }
+    
+    private void openNew(String url,String title) throws IOException{
+       try{fenLoad.close();}       catch( Exception e){}
+       Stage fenetre=new Stage();
+       fenetre.setTitle("Module prefet");      
+       Parent parent = FXMLLoader.load(getClass().getResource(url));
+       Scene scene = new Scene(parent);
+       fenetre.setScene(scene);
+       fenetre.show();
+    }
+    private void openLoad(String url) throws IOException{
+        try{fenLoad.close();}       catch( Exception e){}
+         Parent parent = FXMLLoader.load(getClass().getResource(url));       
+       Scene scene = new Scene(parent,Color.TRANSPARENT);      
+       fenLoad.initStyle(StageStyle.TRANSPARENT);
        fenLoad.setScene(scene);
        fenLoad.show();
     }
-    
-     public void openPrincipale(ActionEvent event) throws IOException{
-       fenLoad.close();
-       fenetrePrincipale=new Stage();
-       fenetrePrincipale.setTitle("Module prefet");      
-       Parent arbitrage = FXMLLoader.load(getClass().getResource("Principale.fxml"));
-       Scene scene = new Scene(arbitrage);
-       fenetrePrincipale.setScene(scene);
-       fenetrePrincipale.show();
-       
-    }
-     
-    public void openArbitrage(ActionEvent event) throws IOException{
-       fenetreArbitrage=new Stage();
-       fenetreArbitrage.setTitle("Arbitrage");      
-       Parent arbitrage = FXMLLoader.load(getClass().getResource("arbitrage.fxml"));
-       Scene scene = new Scene(arbitrage);
-       fenetreArbitrage.setScene(scene);
-       fenetreArbitrage.show();
-    }
-
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-           
+    public void initialize(URL location, ResourceBundle resources) {           
            fenLoad=new Stage();
-            fenLoad.setTitle("Connection");
-            Scene scene = new Scene(new VBox(),Color.TRANSPARENT);
-            fenLoad.initStyle(StageStyle.TRANSPARENT);
-            fenLoad.setScene(scene);
-            this.load();
+           fenLoad.setTitle("Connection");
+           Scene scene = new Scene(new VBox(),Color.TRANSPARENT);
+           fenLoad.initStyle(StageStyle.TRANSPARENT);
+           fenLoad.setScene(scene);
+           this.load();
             
     }
     
