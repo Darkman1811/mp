@@ -57,4 +57,13 @@ public class CrudRegion {
         em.getTransaction().commit();
         return re;
     }
+         
+       public List<Region> getAll(Long IdPays){
+        em.getTransaction().begin();
+       
+        List re=em.createQuery("SELECT D FROM Region D where D.pays.id= "+IdPays).getResultList();
+        
+        em.getTransaction().commit();
+        return re;
+    }
 }

@@ -115,7 +115,19 @@ public class FlowControler implements Initializable{
        fenetreArbitrage.show();
     }
 
-    public void load() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+           
+           fenLoad=new Stage();
+            fenLoad.setTitle("Connection");
+            Scene scene = new Scene(new VBox(),Color.TRANSPARENT);
+            fenLoad.initStyle(StageStyle.TRANSPARENT);
+            fenLoad.setScene(scene);
+            this.load();
+            
+    }
+    
+     public void load() {
         //Alimenter le comboBox des pays
         if(comboPays!=null){
         List <Pays> lst=new Crud.CrudPays().getAll();
@@ -175,16 +187,19 @@ public class FlowControler implements Initializable{
         }
         
     }
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-           
-           fenLoad=new Stage();
-            fenLoad.setTitle("Connection");
-            Scene scene = new Scene(new VBox(),Color.TRANSPARENT);
-            fenLoad.initStyle(StageStyle.TRANSPARENT);
-            fenLoad.setScene(scene);
-            this.load();
-            
-    }
+   
+     @FXML
+     public void load2(ActionEvent event){
+         ComboBox combo=(ComboBox<String>)event.getSource();
+         System.out.println(combo.getValue());
+       //Alimenter le comboBox des Régions
+        /*if(combo!=null){
+            List <Region> lstr=new CrudRegion().getAll((Long)comboPays.getValue());
+            System.out.println(lstr.size());
+            lstr.stream().forEach((val)->{
+                combo.getItems().add(val.getLibelle());
+            });
+        }   */
+     }
     
 }
