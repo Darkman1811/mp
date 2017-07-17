@@ -5,40 +5,37 @@
  */
 package moduleprefet;
 
-import Crud.Crud;
-import Crud.CrudBV;
-import Crud.CrudCV;
-import Crud.CrudCollectivite;
-import Crud.CrudDepartement;
-import Crud.CrudPays;
-import Crud.CrudQuartier;
-import Crud.CrudRegion;
+
+import Crud.CrudParti;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
-import javafx.util.StringConverter;
 import reporting.BV;
 import reporting.CV;
 import reporting.Collectivite;
 import reporting.Departement;
+import reporting.Parti;
 import reporting.Pays;
 import reporting.Quartier;
 import reporting.Region;
@@ -66,6 +63,13 @@ public class FlowControler implements Initializable {
     ComboBox comboCentre;
     @FXML
     ComboBox comboBureau;
+    @FXML
+    VBox panelContentContact;
+        @FXML
+    VBox panelContentParti;        
+   
+    
+    int contactIndex=0;
 
     @FXML
     public void openLogin(ActionEvent event) throws IOException {
@@ -128,5 +132,72 @@ public class FlowControler implements Initializable {
         new ComboLoader<Quartier>().laod(new Quartier(), comboQuartier);
         new ComboLoader<CV>().laod(new CV(), comboCentre);
         new ComboLoader<BV>().laod(new BV(), comboBureau);
+    }
+     
+     
+     
+             
+    @FXML
+    private void ajouterContact(ActionEvent event) {
+        VBox panelContact = new VBox();
+
+        ComboBox roleContact = new ComboBox();
+        roleContact.setPromptText("Role");
+        roleContact.setPrefWidth(150);
+        roleContact.setId("roleContact" + contactIndex);
+
+        Button deleteContact = new Button("Delete");
+        deleteContact.setOnAction(e -> {
+            panelContentContact.getChildren().remove(deleteContact.getParent().getParent());
+        });
+
+        HBox contactTop = new HBox();
+        contactTop.getChildren().addAll(roleContact, deleteContact);
+
+        TextField prenomContact = new TextField();
+        prenomContact.setPromptText("Prénom");
+
+        TextField nomContact = new TextField();
+        nomContact.setPromptText("Nom");
+
+        TextField phoneContact = new TextField();
+        phoneContact.setPromptText("Téléphone");
+
+        TextField emailContact = new TextField();
+        emailContact.setPromptText("Email");
+
+        Separator sep = new Separator(Orientation.HORIZONTAL);
+
+        panelContact.getChildren().addAll(contactTop, prenomContact, nomContact, phoneContact, emailContact, sep);
+        panelContentContact.getChildren().add(panelContact);
+         
+    }
+    
+    @FXML
+    private void ajouterPartis(ActionEvent event){
+        String imageBase="file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/images/";
+        List<Parti> lst=new CrudParti().getAll();
+        lst.stream().forEach((Parti parti)->{
+           Label labelNomParti=new Label(parti.getNom());
+        TextField score=new TextField();score.setPromptText("Score parti");
+        TextField confirmation=new TextField();confirmation.setPromptText("Confirmation score");
+        VBox niv1=new VBox(labelNomParti,score,confirmation);
+        ImageView logoParti=new ImageView(imageBase+parti.getImage());
+        logoParti.setPreserveRatio(true);
+        logoParti.setSmooth(true);
+        logoParti.setFitHeight(117);
+        logoParti.setFitWidth(101);
+        HBox niv2=new HBox(logoParti,niv1);
+        VBox partiContent=new VBox(new Separator(),niv2,new Separator());
+        panelContentParti.getChildren().add(partiContent);  
+        });
+       
+    }
+    
+    @FXML
+    private void saisieInitial(ActionEvent event){
+        BV bv=(BV)comboBureau.getSelectionModel().getSelectedItem();
+        Long idBV=bv.getId();
+        System.out.println(bv.getId()+"-"+bv.getLibelle());
     }
 }

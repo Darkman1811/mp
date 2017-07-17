@@ -65,7 +65,7 @@
             </Label>
                   <VBox alignment="TOP_CENTER" prefHeight="549.0" prefWidth="221.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                      <children>
-                        <ComboBox fx:id="comboCollectivite"   prefWidth="150.0" promptText="Collectivité">
+                        <ComboBox fx:id="comboCollectivite" prefWidth="150.0" promptText="Collectivité">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -90,114 +90,36 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#openArbitrage" text="Button" />
+                        <Button mnemonicParsing="false" onAction="#openArbitrage" text="Arbitrage" />
+                        <Button mnemonicParsing="false" onAction="#saisieInitial" text="Envoyer" />
                      </children>
                   </VBox>
           </children>
         </AnchorPane>
         <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
-          <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="216.0">
-              <children>
-                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Contacts" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                        <VBox alignment="TOP_CENTER" prefHeight="545.0" prefWidth="216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+               <content>
+                  <VBox>
+                     <children>
+                <Label alignment="CENTER" font="$x1" style="&#10;" text="Contacts" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                        <Button fx:id="ajouterContact" mnemonicParsing="false" onAction="#ajouterContact" text="Ajouter" />
+                        <VBox fx:id="panelContentContact" alignment="TOP_CENTER" prefHeight="545.0" prefWidth="216.0">
                            <children>
-                              <TextField promptText="Prénom président">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Nom président">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Téléphone président">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Email président">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
                               <Separator>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </Separator>
-                              <TextField promptText="Prénom acesseur">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Nom acesseur">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Téléphone acesseur">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Email acesseur">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <Separator>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Separator>
-                              <TextField promptText="Prénom secrétaire">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Nom secrétaire">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Téléphone secrétaire">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <TextField promptText="Email secrétaire">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </TextField>
                            </children>
                         </VBox>
-              </children>
-            </AnchorPane>
-          </content>
+                     </children>
+                  </VBox>
+               </content>
         </ScrollPane>
         <AnchorPane>
           <children>
             <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Score" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                  <VBox layoutX="197.0" layoutY="75.0" prefHeight="549.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
-                     <children>
-                        <Pane prefHeight="101.0" prefWidth="445.0">
-                           <children>
-                              <ImageView fitHeight="101.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../../opt/JavaFXSceneBuilder2.0/app/fxml-16.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="117.0" layoutY="7.0" prefHeight="40.0" prefWidth="324.0" text="Nom parti" />
-                              <TextField layoutX="117.0" layoutY="38.0" promptText="Score parti" />
-                              <TextField layoutX="117.0" layoutY="64.0" promptText="Confirmation score" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </VBox>
-                  <Button layoutX="355.0" layoutY="4.0" mnemonicParsing="false" text="Terminer" />
+                  <Button layoutX="355.0" layoutY="4.0" mnemonicParsing="false" onAction="#ajouterPartis" text="Terminer" />
+                  <VBox fx:id="panelContentParti" layoutX="197.0" layoutY="75.0" prefHeight="549.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
           </children>
         </AnchorPane>
       </items>

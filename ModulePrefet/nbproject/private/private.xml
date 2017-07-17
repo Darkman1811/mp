@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="JAVASE">
-            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/Crud/CrudPays.java</file>
-            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/Crud/Crud.java</file>
+            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/ModulePrefet.java</file>
+            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/progression.fxml</file>
+            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/Initialiser.fxml</file>
+            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/connection.fxml</file>
+            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/Principale.fxml</file>
             <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/FlowControler.java</file>
-            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/utils/ComboLoader.java</file>
+            <file>file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/arbitrage.fxml</file>
         </group>
     </open-files>
 </project-private>
