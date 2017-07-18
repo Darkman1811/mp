@@ -28,7 +28,8 @@ public class Collectivite implements Data{
     private Departement departement;
     @OneToMany(mappedBy = "collectivite")
     private List<Quartier> quartier;
-            
+    @OneToMany(mappedBy = "collectivite")
+    private List<CV> cv;            
 
     public Long getId() {
         return id;
@@ -60,6 +61,14 @@ public class Collectivite implements Data{
 
     public void setQuartier(List<Quartier> quartier) {
         this.quartier = quartier;
+    }
+
+    public List<CV> getCv() {
+        return cv;
+    }
+
+    public void setCv(List<CV> cv) {
+        this.cv = cv;
     }
     
     

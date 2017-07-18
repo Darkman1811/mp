@@ -27,6 +27,8 @@ public class CV implements Data{
     private Long longitude;
     @ManyToOne
     private Quartier quartier;
+    @ManyToOne
+    private Collectivite collectivite;
     @OneToMany(mappedBy = "cv")
     private List<BV> bv;
 

@@ -11,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import reporting.Data;
 import reporting.Pays;
+import reporting.Region;
 
 /**
  *
@@ -52,6 +53,17 @@ public class Crud <T extends Data>{
         em.getTransaction().begin();         
        String sql="SELECT D FROM "+data.getClass().getSimpleName()+" D";
         List re=em.createQuery(sql).getResultList();        
+        em.getTransaction().commit();
+        return re;
+    }
+       
+        public List<T> getFromParent(T data,String parentId,Long parentValue){
+        em.getTransaction().begin();         
+       String sql="SELECT D FROM "+data.getClass().getSimpleName()+" D where D."+parentId+"="+parentValue;
+        
+      // String sql="SELECT D FROM Region D where D.pays.id=3";
+        System.out.println(sql);
+        List re=em.createQuery(sql,data.getClass()).getResultList();        
         em.getTransaction().commit();
         return re;
     }

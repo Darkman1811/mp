@@ -12,17 +12,17 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <ComboBox fx:id="comboPays" prefWidth="150.0" promptText="Pays">
+      <ComboBox fx:id="comboPays" onAction="#paysSelected" prefWidth="150.0" promptText="Pays">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </ComboBox>
-      <ComboBox fx:id="comboRegion" prefWidth="150.0" promptText="Region">
+      <ComboBox fx:id="comboRegion" onAction="#regionSelected" prefWidth="150.0" promptText="Region">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
       </ComboBox>
-      <ComboBox fx:id="comboDepartement" prefWidth="150.0" promptText="Departement">
+      <ComboBox fx:id="comboDepartement" onAction="#departementSelected" prefWidth="150.0" promptText="Departement">
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>

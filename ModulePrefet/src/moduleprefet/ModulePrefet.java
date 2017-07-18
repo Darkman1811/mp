@@ -16,6 +16,7 @@ import javafx.stage.Stage;
  * @author super
  */
 public class ModulePrefet extends Application {
+    public static Long idCollectivite;
     
     @Override
     public void start(Stage stage) throws Exception {

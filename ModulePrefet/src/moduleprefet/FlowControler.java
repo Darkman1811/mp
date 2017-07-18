@@ -6,6 +6,7 @@
 package moduleprefet;
 
 
+import Crud.Crud;
 import Crud.CrudParti;
 import java.io.IOException;
 import java.net.URL;
@@ -58,14 +59,12 @@ public class FlowControler implements Initializable {
     @FXML
     ComboBox comboCollectivite;
     @FXML
-    ComboBox comboQuartier;
-    @FXML
     ComboBox comboCentre;
     @FXML
     ComboBox comboBureau;
     @FXML
     VBox panelContentContact;
-        @FXML
+    @FXML
     VBox panelContentParti;        
    
     
@@ -110,7 +109,7 @@ public class FlowControler implements Initializable {
         Scene scene = new Scene(new VBox(), Color.TRANSPARENT);
         fenLoad.initStyle(StageStyle.TRANSPARENT);
         fenLoad.setScene(scene);
-        try {this.load();} catch (NullPointerException ex) {}
+        try {this.load();chargeCollectivite();ajouterPartis();} catch (NullPointerException ex) {}
     }
 
  
@@ -126,12 +125,20 @@ public class FlowControler implements Initializable {
     
      public void load() throws NullPointerException {
         new ComboLoader<Pays>().laod(new Pays(), comboPays);
-        new ComboLoader<Region>().laod(new Region(), comboRegion);
+        
+        /*  Pays pays=new Pays();
+        pays.setId(new Long(198));
+        pays.setLibelle("Sénégal");
+        comboPays.getSelectionModel().select(pays);
+       Pays data=(Pays)comboPays.getSelectionModel().getSelectedItem();
+        new ComboLoader<Region>().laodFromParent(new Region(), comboRegion, "pays.id", data.getId());*/
+               /* new ComboLoader<Region>().laod(new Region(), comboRegion);
         new ComboLoader<Departement>().laod(new Departement(), comboDepartement);
         new ComboLoader<Collectivite>().laod(new Collectivite(), comboCollectivite);
         new ComboLoader<Quartier>().laod(new Quartier(), comboQuartier);
         new ComboLoader<CV>().laod(new CV(), comboCentre);
-        new ComboLoader<BV>().laod(new BV(), comboBureau);
+        new ComboLoader<BV>().laod(new BV(), comboBureau);*/
+        
     }
      
      
@@ -174,7 +181,7 @@ public class FlowControler implements Initializable {
     }
     
     @FXML
-    private void ajouterPartis(ActionEvent event){
+    private void ajouterPartis(){
         String imageBase="file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/images/";
         List<Parti> lst=new CrudParti().getAll();
         lst.stream().forEach((Parti parti)->{
@@ -199,5 +206,63 @@ public class FlowControler implements Initializable {
         BV bv=(BV)comboBureau.getSelectionModel().getSelectedItem();
         Long idBV=bv.getId();
         System.out.println(bv.getId()+"-"+bv.getLibelle());
+    }
+    
+    @FXML
+    private void  paysSelected(ActionEvent event){
+        ComboBox combo=(ComboBox)event.getSource();
+        Pays data=(Pays)combo.getSelectionModel().getSelectedItem();
+        new ComboLoader<Region>().laodFromParent(new Region(), comboRegion, "pays.id", data.getId());
+    }
+    
+     @FXML
+    private void  regionSelected(ActionEvent event){
+        ComboBox combo=(ComboBox)event.getSource();
+        Region data=(Region)combo.getSelectionModel().getSelectedItem();        
+       new ComboLoader<Departement>().laodFromParent(new Departement(), comboDepartement, "region.id", data.getId());
+    }
+    
+     @FXML
+    private void  departementSelected(ActionEvent event){
+       ComboBox combo=(ComboBox)event.getSource();
+       System.out.println(combo.getId());
+        Departement data=(Departement)combo.getSelectionModel().getSelectedItem();    
+        ModulePrefet.idCollectivite=data.getId();
+      
+    }
+     
+    @FXML
+    private void  collectiviteSelected(ActionEvent event){
+        ComboBox combo=(ComboBox)event.getSource();
+        Collectivite data=(Collectivite)combo.getSelectionModel().getSelectedItem();        
+      //  ModulePrefet.idCollectivite=data.getId();
+        //new ComboLoader<Quartier>().laodFromParent(new Quartier(), comboQuartier, "collectivite.id",  data.getId());
+        new ComboLoader<CV>().laodFromParent(new CV(), comboCentre, "collectivite.id",  data.getId());
+    }
+    
+    @FXML
+    private void chargeCollectivite(){
+        new ComboLoader<Collectivite>().laodFromParent(new Collectivite(), comboCollectivite, "departement.id", ModulePrefet.idCollectivite);
+    }
+    
+     @FXML
+    private void  quartierSelected(ActionEvent event){
+        ComboBox combo=(ComboBox)event.getSource();
+        Quartier data=(Quartier)combo.getSelectionModel().getSelectedItem();        
+       new ComboLoader<CV>().laodFromParent(new CV(), comboCentre, "quartier.id", data.getId());
+    }
+    
+     @FXML
+    private void  centreDeVoteSelected(ActionEvent event){
+        ComboBox combo=(ComboBox)event.getSource();
+        CV data=(CV)combo.getSelectionModel().getSelectedItem();        
+       new ComboLoader<BV>().laodFromParent(new BV(), comboBureau, "cv.id", data.getId());
+    }
+    
+     @FXML
+    private void  bureauDeVoteSelected(ActionEvent event){
+        ComboBox combo=(ComboBox)event.getSource();
+        BV data=(BV)combo.getSelectionModel().getSelectedItem();        
+       System.out.println("BV: "+data.getId()+" - "+data.getLibelle());
     }
 }
