@@ -5,18 +5,22 @@
  */
 package reporting;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author super
  */
 @Entity
+@XmlRootElement
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +29,8 @@ public class Contact {
     private String nom;
     private String telephone;
     private String email;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @XmlTransient
     private BV bv;
 
     public Long getId() {
@@ -67,12 +72,24 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    
+    @XmlTransient
     public BV getBv() {
         return bv;
     }
 
     public void setBv(BV bv) {
+        this.bv = bv;
+    }
+
+    public Contact() {
+    }
+
+    public Contact(String Prenom, String nom, String telephone, String email, BV bv) {
+        this.Prenom = Prenom;
+        this.nom = nom;
+        this.telephone = telephone;
+        this.email = email;
         this.bv = bv;
     }
     

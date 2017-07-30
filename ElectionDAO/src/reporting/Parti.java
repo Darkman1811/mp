@@ -6,11 +6,14 @@
 package reporting;
 
 import gestion.Resultat;
+import gestion.Score;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -24,8 +27,8 @@ public class Parti {
     private Long id;
     private String nom;
     private String image;
-    @OneToMany(mappedBy = "parti")
-    private List <Resultat> resultat ;
+    @OneToMany(mappedBy = "parti",cascade = CascadeType.ALL)
+    private List<Score> score;
 
     public Long getId() {
         return id;
@@ -51,13 +54,24 @@ public class Parti {
         this.image = image;
     }
 
-    public List<Resultat> getResultat() {
-        return resultat;
+    public List<Score> getScore() {
+        return score;
     }
 
-    public void setResultat(List<Resultat> resultat) {
-        this.resultat = resultat;
+    public void setScore(List<Score> score) {
+        this.score = score;
     }
+
+    public Parti() {
+    }
+
+    public Parti(String nom, String image, List<Score> score) {
+        this.nom = nom;
+        this.image = image;
+        this.score = score;
+    }
+
+
     
     
 }

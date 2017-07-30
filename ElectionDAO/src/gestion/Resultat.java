@@ -6,13 +6,17 @@
 package gestion;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 import reporting.BV;
-import reporting.Election;
 import reporting.Parti;
 
 /**
@@ -20,21 +24,22 @@ import reporting.Parti;
  * @author super
  */
 @Entity
+@XmlRootElement
 public class Resultat {
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String date;
     private String heure;
-    private Boolean etat;
-    @OneToOne
+    private Integer etat;
+    @OneToOne(cascade = CascadeType.MERGE)
     private BV bv;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List <Score> score;
-    @ManyToOne
-    private Election election;
-    @ManyToOne
-    private Parti parti;
-
+    
+    
+    
     public Long getId() {
         return id;
     }
@@ -59,12 +64,38 @@ public class Resultat {
         this.heure = heure;
     }
 
-    public Boolean getEtat() {
+    public Integer getEtat() {
         return etat;
     }
 
-    public void setEtat(Boolean etat) {
+    public void setEtat(Integer etat) {
         this.etat = etat;
     }
+
+    public BV getBv() {
+        return bv;
+    }
+
+    public void setBv(BV bv) {
+        this.bv = bv;
+    }
+
+    public List<Score> getScore() {
+        return score;
+    }
+
+    public void setScore(List<Score> score) {
+        this.score = score;
+    }
     
+      public Resultat() {
+    }
+
+    public Resultat(String date, String heure, Integer etat, BV bv, List<Score> score) {
+        this.date = date;
+        this.heure = heure;
+        this.etat = etat;
+        this.bv = bv;
+        this.score = score;
+    }
 }

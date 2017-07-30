@@ -39,6 +39,7 @@ public class ComboLoader<T extends Data> {
                     String[] vals = string.split("-");
                     data.setId(new Long(vals[1]));
                     data.setLibelle(vals[2]);
+                    
                     return data;
                 }
 
@@ -66,6 +67,7 @@ public class ComboLoader<T extends Data> {
                     String[] vals = string.split("-");
                     data.setId(new Long(vals[1]));
                     data.setLibelle(vals[2]);
+                    System.out.println("conv"+data.getLibelle());
                     return data;
                 }
 

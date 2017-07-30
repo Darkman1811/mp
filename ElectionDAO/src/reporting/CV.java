@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,6 +31,7 @@ public class CV implements Data{
     @ManyToOne
     private Collectivite collectivite;
     @OneToMany(mappedBy = "cv")
+     @XmlTransient
     private List<BV> bv;
 
     public Long getId() {
@@ -77,6 +79,7 @@ public class CV implements Data{
         this.quartier = quartier;
     }
 
+    @XmlTransient
     public List<BV> getBv() {
         return bv;
     }

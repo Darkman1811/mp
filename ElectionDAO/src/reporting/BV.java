@@ -7,6 +7,7 @@ package reporting;
 
 import gestion.Resultat;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,11 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 /**
  *
  * @author super
  */
 @Entity
+@XmlRootElement
 public class BV implements Data{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +31,9 @@ public class BV implements Data{
     @ManyToOne
     private CV cv;
     @OneToOne
+    @XmlTransient
     private Resultat resultat;
-    @OneToMany(mappedBy = "bv")
+    @OneToMany(mappedBy = "bv",cascade = CascadeType.ALL)    
     private List <Contact> contacts;
     
 
@@ -55,7 +60,8 @@ public class BV implements Data{
     public void setCv(CV cv) {
         this.cv = cv;
     }
-
+    
+    @XmlTransient
     public Resultat getResultat() {
         return resultat;
     }
@@ -72,6 +78,6 @@ public class BV implements Data{
         this.contacts = contacts;
     }
     
-    
+   
     
 }

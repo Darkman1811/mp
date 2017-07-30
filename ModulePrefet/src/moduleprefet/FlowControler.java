@@ -8,8 +8,11 @@ package moduleprefet;
 
 import Crud.Crud;
 import Crud.CrudParti;
+import gestion.Resultat;
+import gestion.Score;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -19,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,12 +39,14 @@ import javafx.stage.StageStyle;
 import reporting.BV;
 import reporting.CV;
 import reporting.Collectivite;
+import reporting.Contact;
 import reporting.Departement;
 import reporting.Parti;
 import reporting.Pays;
 import reporting.Quartier;
 import reporting.Region;
 import utils.ComboLoader;
+import utils.SenderRest;
 
 /**
  *
@@ -149,9 +155,10 @@ public class FlowControler implements Initializable {
         VBox panelContact = new VBox();
 
         ComboBox roleContact = new ComboBox();
+        roleContact.getItems().addAll("Président","Accesseur","Sécretaire","Représentant parti","Observateur");
         roleContact.setPromptText("Role");
         roleContact.setPrefWidth(150);
-        roleContact.setId("roleContact" + contactIndex);
+        
 
         Button deleteContact = new Button("Delete");
         deleteContact.setOnAction(e -> {
@@ -185,10 +192,11 @@ public class FlowControler implements Initializable {
         String imageBase="file:/media/super/YACINE%20LOGICIELS/ProjetElection/ModulePrefet/src/moduleprefet/images/";
         List<Parti> lst=new CrudParti().getAll();
         lst.stream().forEach((Parti parti)->{
+           Label idParti=new Label(parti.getId().toString());
            Label labelNomParti=new Label(parti.getNom());
         TextField score=new TextField();score.setPromptText("Score parti");
         TextField confirmation=new TextField();confirmation.setPromptText("Confirmation score");
-        VBox niv1=new VBox(labelNomParti,score,confirmation);
+        VBox niv1=new VBox(idParti,labelNomParti,score,confirmation);
         ImageView logoParti=new ImageView(imageBase+parti.getImage());
         logoParti.setPreserveRatio(true);
         logoParti.setSmooth(true);
@@ -203,9 +211,66 @@ public class FlowControler implements Initializable {
     
     @FXML
     private void saisieInitial(ActionEvent event){
+        Resultat resultat=new Resultat();
         BV bv=(BV)comboBureau.getSelectionModel().getSelectedItem();
-        Long idBV=bv.getId();
-        System.out.println(bv.getId()+"-"+bv.getLibelle());
+        bv.getContacts().clear();
+        bv.setResultat(resultat);
+        resultat.setBv(bv);
+        resultat.setEtat(2);
+        
+        //resultat.setDate(new Date());
+        
+        //RECUPERATION DES CONTACTS
+        panelContentContact.getChildren().stream().forEach((Node node)->{
+        if(node instanceof VBox){
+        VBox panelContact=(VBox)node;
+        HBox contactTop=(HBox)panelContact.getChildren().get(0);
+        ComboBox roleContact=(ComboBox)contactTop.getChildren().get(0);
+        TextField prenomContact=(TextField)panelContact.getChildren().get(1);
+        TextField nomContact=(TextField)panelContact.getChildren().get(2);
+        TextField phoneContact=(TextField)panelContact.getChildren().get(3);
+        TextField emailContact=(TextField)panelContact.getChildren().get(4);
+        
+        System.out.println(roleContact.getValue().toString());
+        System.out.println(prenomContact.getText());
+        System.out.println(nomContact.getText());
+        System.out.println(phoneContact.getText());
+        System.out.println(emailContact.getText());
+        resultat.getBv().getContacts().add(new Contact(prenomContact.getText(), nomContact.getText(), phoneContact.getText(), emailContact.getText(), resultat.getBv()));
+        }
+                });
+        //Affectation BV
+        
+        //RECUPERATION DES SCORES
+        List<Score> lstScore=new ArrayList();
+        panelContentParti.getChildren().stream().forEach((Node node)->{
+            if(node instanceof VBox){
+                VBox partiContent=(VBox) node;
+                HBox niveau2=(HBox)partiContent.getChildren().get(1);
+                VBox niveau1=(VBox)niveau2.getChildren().get(1);    
+                Label idParti=(Label)niveau1.getChildren().get(0);
+                TextField confirmation=(TextField)niveau1.getChildren().get(3);
+                
+                Long scoreValue=Long.parseLong(confirmation.getText());
+                Long idPartiValue=Long.parseLong(idParti.getText());
+                
+                Score score=new Score();
+                Parti parti=new Parti();
+                parti.setId(idPartiValue);
+                
+                score.setParti(parti);
+                
+                score.setNb_voix(scoreValue);
+                score.setResultat(resultat);
+                lstScore.add(score);
+              
+            }
+        });
+        
+        resultat.setScore(lstScore);
+        System.out.println(SenderRest.sendToServer(resultat));
+        System.out.println(resultat.getScore().size());
+        
     }
     
     @FXML
@@ -235,9 +300,7 @@ public class FlowControler implements Initializable {
     private void  collectiviteSelected(ActionEvent event){
         ComboBox combo=(ComboBox)event.getSource();
         Collectivite data=(Collectivite)combo.getSelectionModel().getSelectedItem();        
-      //  ModulePrefet.idCollectivite=data.getId();
-        //new ComboLoader<Quartier>().laodFromParent(new Quartier(), comboQuartier, "collectivite.id",  data.getId());
-        new ComboLoader<CV>().laodFromParent(new CV(), comboCentre, "collectivite.id",  data.getId());
+         new ComboLoader<CV>().laodFromParent(new CV(), comboCentre, "collectivite.id",  data.getId());
     }
     
     @FXML
@@ -265,4 +328,7 @@ public class FlowControler implements Initializable {
         BV data=(BV)combo.getSelectionModel().getSelectedItem();        
        System.out.println("BV: "+data.getId()+" - "+data.getLibelle());
     }
+    
 }
+    
+   

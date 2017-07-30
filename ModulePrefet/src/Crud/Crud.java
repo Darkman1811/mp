@@ -62,7 +62,7 @@ public class Crud <T extends Data>{
        String sql="SELECT D FROM "+data.getClass().getSimpleName()+" D where D."+parentId+"="+parentValue;
         
       // String sql="SELECT D FROM Region D where D.pays.id=3";
-        System.out.println(sql);
+      //  System.out.println(sql);
         List re=em.createQuery(sql,data.getClass()).getResultList();        
         em.getTransaction().commit();
         return re;
